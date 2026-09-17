@@ -7,12 +7,14 @@ export default function App() {
   const [activeTab, setActiveTab] = useState<'outer' | 'inner'>('outer');
   const [quarantinedIds, setQuarantinedIds] = useState<string[]>([]);
 
+  // Simple state callback allowing the admin panel to mock dynamic UI updates on the storefront
   const handleQuarantine = (id: string) => {
     setQuarantinedIds(prev => [...prev, id]);
   };
 
   return (
     <div className="min-h-screen bg-[#06090F] text-slate-100 antialiased font-sans">
+      {/* Structural Header Navigation */}
       <header className="border-b border-zinc-800 bg-[#0C1017]/90 backdrop-blur sticky top-0 z-50 px-8 py-4 flex flex-col sm:flex-row gap-4 justify-between items-center">
         <div className="flex items-center gap-3">
           <div className="w-6 h-6 bg-gradient-to-br from-luxuryGold via-amber-500 to-amber-700 rotate-45 border border-white/10" />
@@ -50,7 +52,8 @@ export default function App() {
         </div>
       </header>
 
-      <main className="p-4 md:p-8">
+      {/* Portal Interface Context View Router */}
+      <main className="animate-fadeIn p-4 md:p-8">
         {activeTab === 'outer' ? (
           <OuterPortal quarantinedIds={quarantinedIds} />
         ) : (
